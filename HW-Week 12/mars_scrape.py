@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[21]:
 
 
 #import dependencies and direct Browser to the chromedriver location
@@ -22,9 +22,6 @@ def init_browser():
 
 def scrape_info():
     browser = init_browser()
-# In[2]:
-
-
 
 
     #link to the website that is being scraped
@@ -32,20 +29,20 @@ def scrape_info():
     browser.visit(url)
 
 
-    # In[3]:
+    # In[23]:
 
 
     html=browser.html
     soup = bs(html,"html.parser")
 
 
-    # In[4]:
+    # In[24]:
 
 
     ### NASA Mars News
 
 
-    # In[5]:
+    # In[25]:
 
 
     #inspect feature in Chrome was used to identify appropriate class, 'content_title' for news title 
@@ -53,7 +50,7 @@ def scrape_info():
     print(f'Latest News Title: {title}')
 
 
-    # In[6]:
+    # In[26]:
 
 
     #inspect feature in Chrome was used to identify appropriate classes for the body/paragraph associated with news title
@@ -61,13 +58,13 @@ def scrape_info():
     print(f'Latest News Paragraph: {para}')
 
 
-    # In[7]:
+    # In[27]:
 
 
     ### JPL Mars Space Images - Featured Image
 
 
-    # In[8]:
+    # In[28]:
 
 
     #link to the website that is being scraped
@@ -75,7 +72,7 @@ def scrape_info():
     browser.visit(imageurl)
 
 
-    # In[ ]:
+    # In[29]:
 
 
     #click on 'FULL IMAGE' link for the featured image
@@ -88,21 +85,21 @@ def scrape_info():
     browser.click_link_by_partial_text('.jpg')
 
 
-    # In[ ]:
+    # In[30]:
 
 
     #print the link to the featured image url
     print(browser.url)
 
 
-    # In[ ]:
+    # In[31]:
 
 
     #assign link to a variable
     featured_image = browser.url
 
 
-    # In[ ]:
+    # In[32]:
 
 
     #link to the Mars Weather website/twitter
@@ -110,7 +107,7 @@ def scrape_info():
     browser.visit(weatherurl)
 
 
-    # In[ ]:
+    # In[33]:
 
 
     wtrsoup=bs(browser.html,'html.parser')
@@ -124,7 +121,7 @@ def scrape_info():
     print(f"Clean Weather Tweet: {mars_weather}")
 
 
-    # In[ ]:
+    # In[34]:
 
 
     #Mars Facts
@@ -137,7 +134,7 @@ def scrape_info():
     marstable
 
 
-    # In[ ]:
+    # In[35]:
 
 
     #convert dataframe to "striped" html table without the index
@@ -145,13 +142,13 @@ def scrape_info():
     print(htmltable)
 
 
-    # In[ ]:
+    # In[36]:
 
 
     #Hemis
 
 
-    # In[ ]:
+    # In[39]:
 
 
     hemiurl="https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -170,30 +167,27 @@ def scrape_info():
     print(title_list)
 
 
-    # In[ ]:
+    # In[40]:
 
 
     for title in title_list:
         browser.click_link_by_partial_text(title)
         time.sleep(2)
-        #next, click on original to get the full image
-        browser.click_link_by_partial_text('Original')
-        time.sleep(1)
+        #next, click on 'Sample' to get the full image and get the href link
         #add to the 'imgurl' list
-        imgurl.append(browser.url)
-        time.sleep(1)
+        imgurl.append(browser.find_by_text('Sample')['href'])
         #after getting the url to the original image for each hemi
         #go back to the original url with links to all 4 hemis
         browser.visit(hemiurl)
 
 
-    # In[ ]:
+    # In[41]:
 
 
     print(imgurl)
 
 
-    # In[ ]:
+    # In[42]:
 
 
     #iterate through the two lists to create a list of dicitionaries containing title and imgurl
@@ -207,14 +201,14 @@ def scrape_info():
 
 
 
-    # In[ ]:
+    # In[43]:
 
 
     #assign hemi_urls list to a variable
     hemilist = hemi_image_urls
 
 
-    # In[ ]:
+    # In[44]:
 
 
     #close the browser
@@ -243,7 +237,7 @@ def scrape_info():
 # In[ ]:
 
 
-# get_ipython().system('jupyter nbconvert --to script mars_scrape.ipynb')
+# !jupyter nbconvert --to script mars_scrape.ipynb
 
 
 # In[ ]:

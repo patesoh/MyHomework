@@ -10,10 +10,10 @@
   
 </head>
 
-<body style="background-color:crimson">
+<body style="background-color: lightgreen ">
 <!-- Jumbotron -->
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid dark-bg padding:-30px">
   <div class="jumbotron text-center">
     <div class = "container-fluid">
     <div style="clear:both;">
@@ -28,6 +28,11 @@
 </div>
 
 <style type="text/css">
+  .jumbotron {
+background-image: url('http://goo.gl/04j7Nn');
+height: 500px; 
+}
+  
   .container{
   height: 180px;
   display: block;
@@ -49,6 +54,7 @@
 
   .row {
   text-align: center;
+  image-orientation: center
     }
 .col-md-1 {
   display:inline-block;
@@ -82,22 +88,22 @@
       <div class="row justify-content-center">
           <div class="col">
              <h3>Featured Image</h3>
-          <img src = "{{ mars_info.featured_image }}" class="img-fluid" alt="Responsive image">
+          <img src = "{{ mars_info.featured_image }}" class="img-fluid" alt="Responsive image" width="3500" height="500">
       </div>     
   </div>
   <br>
-  <div class="row">
+  <div class="row justify-content-center">
     <h2>Mars Hemispheres</h2>
   </div>
 <div class = "container-fluid">
   <div class="row justify-content-center">
-    <div class=" card col-md-6">
+    <div class="col-md-6">
         <h5>{{ mars_info.hemilist[0].Title }}</h5>
-         <img src="Cerebrus.png" class="img-fluid" alt="Responsive image">
+         <img src="{{ mars_info.hemilist[0].Image_URL }}" class="img-fluid" alt="Responsive image">
     </div> 
     <div class="col-md-6">
         <h5>{{ mars_info.hemilist[1]["Title"] }}</h5>
-         <img src="schia.png" class="img-fluid" alt="Responsive image">
+         <img src="{{ mars_info.hemilist[1].Image_URL }}" class="img-fluid" alt="Responsive image">
     </div>  
   </div>
 </div>
@@ -105,11 +111,11 @@
   <div class="row justify-content-center">
       <div class="col-md-6">
           <h5>{{ mars_info.hemilist[2]["Title"] }}</h5>
-           <img src="syrtis.png" class="img-fluid" alt="Responsive image">
+           <img src="{{ mars_info.hemilist[2].Image_URL }}" class="img-fluid" alt="Responsive image">
       </div> 
       <div class="col-md-6">
           <h5>{{ mars_info.hemilist[3]["Title"] }}</h5>
-           <img src="valles.png" class="img-fluid" alt="Responsive image">
+           <img src="{{ mars_info.hemilist[3].Image_URL }}" class="img-fluid" alt="Responsive image">
       </div>  
    </div>
   </div>
