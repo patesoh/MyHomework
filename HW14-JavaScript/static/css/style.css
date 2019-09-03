@@ -18,6 +18,11 @@ body {
   overflow: auto;
 }
 
+
+.tbody {
+text-align:center;
+}
+
 /* The footer is positioned at the bottom of the page */
 .footer {
   position: absolute;
@@ -74,6 +79,10 @@ select {
 }
 
 #table-area th {
+  text-align: center;
+}
+
+#table-area tbody {
   text-align: center;
 }
 
